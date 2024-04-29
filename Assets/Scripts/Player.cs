@@ -1,4 +1,5 @@
 using JetBrains.Annotations;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
@@ -12,27 +13,38 @@ public class Player : MonoBehaviour
     [SerializeField] LayerMask counterMask;
     private bool isWalking;
     private Vector3 prevMoveDir = Vector3.zero;
+    private Counter selectedCounter;
+    public event EventHandler<OnCounterSelectEventArgs> OnCounterSelect;
+    public static Player instance { get; private set; }
+
+    public class OnCounterSelectEventArgs : EventArgs
+    {
+        public Counter selectedCounter;
+    }
+
+    private void Awake()
+    {
+        if(instance != null)
+        {
+            Debug.Log("There is more than one player instance!");
+        }
+        else
+        {
+            instance = this;
+        }
+    }
 
     private void Start()
     {
         gameInput.OnInteraction += GameInput_OnInteraction;
+
     }
 
     private void GameInput_OnInteraction(object sender, System.EventArgs e)
     {
-                Vector2 inputVector = gameInput.GetMovementVectorNormalized();
-        Vector3 movementDir = new Vector3(inputVector.x, 0f, inputVector.y);
-        float interactDistance = 1.0f;
-
-        if(movementDir != Vector3.zero)
+        if(selectedCounter != null)
         {
-            prevMoveDir = movementDir;
-        }
-
-        if(Physics.Raycast(transform.position, prevMoveDir, out RaycastHit hitInfo, interactDistance, counterMask))
-        {
-            hitInfo.transform.TryGetComponent<Counter>(out Counter counter);
-            counter.Interact();
+            selectedCounter.Interact();
         }
     }
 
@@ -41,7 +53,6 @@ public class Player : MonoBehaviour
 
         HandleMovement();
         HandleInteraction();
-
 
     }
 
@@ -58,9 +69,32 @@ public class Player : MonoBehaviour
 
         if(Physics.Raycast(transform.position, prevMoveDir, out RaycastHit hitInfo, interactDistance, counterMask))
         {
-            hitInfo.transform.TryGetComponent<Counter>(out Counter counter);
-            //counter.Interact();
+            if (hitInfo.transform.TryGetComponent<Counter>(out Counter counter))
+            {
+                if (counter != selectedCounter)
+                {
+                    SetSelectedCounter(counter);
+                }
+            }
+            else
+            {
+                SetSelectedCounter(null);
+            }
         }
+        else
+        {
+            SetSelectedCounter(null);
+        }
+    }
+
+    private void SetSelectedCounter(Counter selectedCounter)
+    {
+        this.selectedCounter = selectedCounter;
+
+        OnCounterSelect?.Invoke(this, new OnCounterSelectEventArgs
+        {
+            selectedCounter = selectedCounter
+        });
     }
 
     private void HandleMovement()
