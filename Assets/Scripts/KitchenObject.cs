@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class KitchenObject : MonoBehaviour, IKitchenObjectParent
+public class KitchenObject : MonoBehaviour
 {
     [SerializeField] private KitchenObjectSO kitchenObjectSO;
 
@@ -22,7 +22,7 @@ public class KitchenObject : MonoBehaviour, IKitchenObjectParent
 
         this.kitchenObjectParent = kitchenObjectParent;
 
-        this.kitchenObjectParent.SetKitchenObjectParent(this);
+        this.kitchenObjectParent.SetKitchenObject(this);
 
         transform.parent  = kitchenObjectParent.GetTopPoint();
         transform.localPosition = Vector3.zero;

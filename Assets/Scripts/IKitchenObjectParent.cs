@@ -4,7 +4,7 @@ using UnityEngine;
 
 public interface IKitchenObjectParent
 {
-    void SetKitchenObjectParent(IKitchenObjectParent kitchenObjectParent);
+    void SetKitchenObject(KitchenObject kitchenObjectParent);
 
     Transform GetTopPoint();
 

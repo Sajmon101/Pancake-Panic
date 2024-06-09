@@ -5,21 +5,27 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Player : MonoBehaviour, IKitchenObjectParent
 {
+    public static Player instance { get; private set; }
+
+    public event EventHandler<OnCounterSelectEventArgs> OnCounterSelect;
 
     [SerializeField] GameInput gameInput;
     [SerializeField] float movementSpeed = 7f;
     [SerializeField] LayerMask counterMask;
+    [SerializeField] Transform KitchenObjectHoldPoint;
+
     private bool isWalking;
     private Vector3 prevMoveDir = Vector3.zero;
-    private Counter selectedCounter;
-    public event EventHandler<OnCounterSelectEventArgs> OnCounterSelect;
-    public static Player instance { get; private set; }
+    private BaseCounter selectedCounter;
+    private KitchenObject kitchenObjectParent;
+
+
 
     public class OnCounterSelectEventArgs : EventArgs
     {
-        public Counter selectedCounter;
+        public BaseCounter selectedCounter;
     }
 
     private void Awake()
@@ -44,7 +50,7 @@ public class Player : MonoBehaviour
     {
         if(selectedCounter != null)
         {
-            selectedCounter.Interact();
+            selectedCounter.Interact(this);
         }
     }
 
@@ -69,7 +75,7 @@ public class Player : MonoBehaviour
 
         if(Physics.Raycast(transform.position, prevMoveDir, out RaycastHit hitInfo, interactDistance, counterMask))
         {
-            if (hitInfo.transform.TryGetComponent<Counter>(out Counter counter))
+            if (hitInfo.transform.TryGetComponent<BaseCounter>(out BaseCounter counter))
             {
                 if (counter != selectedCounter)
                 {
@@ -87,7 +93,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void SetSelectedCounter(Counter selectedCounter)
+    private void SetSelectedCounter(BaseCounter selectedCounter)
     {
         this.selectedCounter = selectedCounter;
 
@@ -141,4 +147,33 @@ public class Player : MonoBehaviour
     {
         return isWalking;
     }
+
+
+    //IKitchenObjectParent
+    public void SetKitchenObject(KitchenObject kitchenObjectParent)
+    {
+        this.kitchenObjectParent = kitchenObjectParent;
+    }
+
+    public Transform GetTopPoint()
+    {
+        return KitchenObjectHoldPoint;
+    }
+
+    public void ClearKitchenObjectParent()
+    {
+        kitchenObjectParent = null;
+    }
+
+    public IKitchenObjectParent GetKitchenObjectParent()
+    {
+        return this;
+    }
+
+    public bool HaskitchenObjectParent()
+    {
+        return kitchenObjectParent != null;
+    }
+
+
 }
