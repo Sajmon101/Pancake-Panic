@@ -6,7 +6,7 @@ public class SelectedCounterVisual : MonoBehaviour
 {
 
     [SerializeField] BaseCounter counter;
-    [SerializeField] GameObject highlightedVisualObject;
+    [SerializeField] GameObject[] highlightedVisualObject;
 
     private void Start()
     {
@@ -27,11 +27,17 @@ public class SelectedCounterVisual : MonoBehaviour
 
     private void Show()
     {
-        highlightedVisualObject.SetActive(true);
+        foreach (var item in highlightedVisualObject)
+        {
+            item.SetActive(true);
+        }
     }
 
     private void Hide()
     {
-        highlightedVisualObject.SetActive(false);
+        foreach (var item in highlightedVisualObject)
+        {
+            item.SetActive(false);
+        }
     }
 }
