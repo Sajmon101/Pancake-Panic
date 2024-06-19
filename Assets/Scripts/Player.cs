@@ -19,7 +19,7 @@ public class Player : MonoBehaviour, IKitchenObjectParent
     private bool isWalking;
     private Vector3 prevMoveDir = Vector3.zero;
     private BaseCounter selectedCounter;
-    private KitchenObject kitchenObjectParent;
+    private KitchenObject kitchenObject;
 
 
 
@@ -150,9 +150,9 @@ public class Player : MonoBehaviour, IKitchenObjectParent
 
 
     //IKitchenObjectParent
-    public void SetKitchenObject(KitchenObject kitchenObjectParent)
+    public void SetKitchenObjectParent(KitchenObject kitchenObject)
     {
-        this.kitchenObjectParent = kitchenObjectParent;
+        this.kitchenObject = kitchenObject;
     }
 
     public Transform GetTopPoint()
@@ -162,17 +162,17 @@ public class Player : MonoBehaviour, IKitchenObjectParent
 
     public void ClearKitchenObjectParent()
     {
-        kitchenObjectParent = null;
+        kitchenObject = null;
     }
 
-    public IKitchenObjectParent GetKitchenObjectParent()
+    public KitchenObject GetKitchenObject()
     {
-        return this;
+        return kitchenObject;
     }
 
-    public bool HaskitchenObjectParent()
+    public bool HaskitchenObject()
     {
-        return kitchenObjectParent != null;
+        return kitchenObject != null;
     }
 
 

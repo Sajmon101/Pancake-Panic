@@ -22,10 +22,11 @@ public class KitchenObject : MonoBehaviour
 
         this.kitchenObjectParent = kitchenObjectParent;
 
-        this.kitchenObjectParent.SetKitchenObject(this);
+        this.kitchenObjectParent.SetKitchenObjectParent(this);
 
         transform.parent  = kitchenObjectParent.GetTopPoint();
         transform.localPosition = Vector3.zero;
+        transform.localRotation = Quaternion.identity;
     }
 
     public Transform GetTopPoint()

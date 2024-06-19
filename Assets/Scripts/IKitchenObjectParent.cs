@@ -4,13 +4,12 @@ using UnityEngine;
 
 public interface IKitchenObjectParent
 {
-    void SetKitchenObject(KitchenObject kitchenObjectParent);
+    void SetKitchenObjectParent(KitchenObject kitchenObject);
 
     Transform GetTopPoint();
 
     void ClearKitchenObjectParent();
+    KitchenObject GetKitchenObject();
 
-    IKitchenObjectParent GetKitchenObjectParent();
-
-    bool HaskitchenObjectParent();
+    bool HaskitchenObject();
 }
