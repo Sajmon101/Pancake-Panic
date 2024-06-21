@@ -82,7 +82,7 @@ public class Player : MonoBehaviour, IKitchenObjectParent
             prevMoveDir = movementDir;
         }
 
-        if(Physics.Raycast(transform.position, prevMoveDir, out RaycastHit hitInfo, interactDistance, counterMask))
+        if (Physics.Raycast(transform.position, prevMoveDir, out RaycastHit hitInfo, interactDistance, counterMask))
         {
             if (hitInfo.transform.TryGetComponent<BaseCounter>(out BaseCounter counter))
             {

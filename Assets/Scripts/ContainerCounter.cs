@@ -6,8 +6,6 @@ public class ContainerCounter : BaseCounter
 {
     [SerializeField] KitchenObjectSO kitchenObjectSO;
 
-    KitchenObject kitchenObject;
-
     public override void Interact(Player player)
     {
         if(!player.HaskitchenObject())
