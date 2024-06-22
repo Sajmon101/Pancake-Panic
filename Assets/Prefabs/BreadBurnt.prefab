@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5825556883053989719}
   - component: {fileID: 358659637385745643}
   m_Layer: 0
-  m_Name: Bread
+  m_Name: BreadBurnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4d5d2f26a9726c439d58bb1a67467ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  kitchenObjectSO: {fileID: 11400000, guid: a9a84784e5e4eb347b4347a82563ae66, type: 2}
+  kitchenObjectSO: {fileID: 11400000, guid: e7efed5216cf9ce46ab19a70ea0d5418, type: 2}
 --- !u!1 &6326788857483939700
 GameObject:
   m_ObjectHideFlags: 0
@@ -108,7 +108,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: b40fd702fe9b42540bde77fe87584b49, type: 2}
+  - {fileID: 2100000, guid: 920a80d455028b3499083e162b0d293d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
