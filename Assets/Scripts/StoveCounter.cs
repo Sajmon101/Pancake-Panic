@@ -1,9 +1,19 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static CuttingCounter;
 
 public class StoveCounter : BaseCounter
 {
+    public EventHandler<OnStateChanheEventArgs> OnStateChange;
+
+    public class OnStateChanheEventArgs
+    {
+        public State state;
+    }
+
+
     [SerializeField] private FryingRecipeSO[] fryingRecipeArrSO;
     [SerializeField] private BurningRecipeSO[] burningRecipeArrSO;
     private FryingRecipeSO fryingRecipeSO;
@@ -12,7 +22,7 @@ public class StoveCounter : BaseCounter
     private float burningTimer = 0;
     private State state;
 
-    private enum State
+    public enum State
     {
         Idle,
         Frying,
@@ -30,7 +40,6 @@ public class StoveCounter : BaseCounter
             case State.Frying:
 
                 fryingTimer += Time.deltaTime;
-                Debug.Log("frying");
                 if (fryingTimer > fryingRecipeSO.fryingTimerMax)
                 {
 
@@ -40,6 +49,7 @@ public class StoveCounter : BaseCounter
                     GetKitchenObject().DestroySelf();
                     KitchenObject.SpawnKitchenObject(fryingRecipeSO.output, this);
                     burningRecipeSO = GetBurningRecipeByInputSO(GetKitchenObject().GetKitchenObjectSO());
+
                 }
 
             break;
@@ -47,7 +57,6 @@ public class StoveCounter : BaseCounter
             case State.Fried:
 
                 burningTimer += Time.deltaTime;
-                Debug.Log("fried");
 
                 if (burningTimer > burningRecipeSO.burningTimerMax)
                 {
@@ -57,12 +66,16 @@ public class StoveCounter : BaseCounter
 
                     GetKitchenObject().DestroySelf();
                     KitchenObject.SpawnKitchenObject(burningRecipeSO.output, this);
+
+                    OnStateChange?.Invoke(this, new OnStateChanheEventArgs
+                    {
+                        state = state,
+                    });
                 }
 
                 break;
 
             case State.Burnt:
-                Debug.Log("burnt");
             break;
         }
     }
@@ -81,6 +94,11 @@ public class StoveCounter : BaseCounter
                     state = State.Frying;
                     fryingTimer = 0;
 
+                    OnStateChange?.Invoke(this, new OnStateChanheEventArgs
+                    {
+                        state = state,
+                    });
+
                 }
 
             }
@@ -91,6 +109,11 @@ public class StoveCounter : BaseCounter
             {
                 GetKitchenObject().SetKitchenObjectParent(player);
                 state = State.Idle;
+
+                OnStateChange?.Invoke(this, new OnStateChanheEventArgs
+                {
+                    state = state,
+                });
             }
         }
     }
