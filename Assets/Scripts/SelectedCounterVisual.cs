@@ -29,7 +29,10 @@ public class SelectedCounterVisual : MonoBehaviour
     {
         foreach (var item in highlightedVisualObject)
         {
-            item.SetActive(true);
+            if (!item.activeSelf)
+            {
+                item.SetActive(true);
+            }
         }
     }
 
@@ -37,7 +40,10 @@ public class SelectedCounterVisual : MonoBehaviour
     {
         foreach (var item in highlightedVisualObject)
         {
-            item.SetActive(false);
+            if (item.activeSelf)
+            {
+                item.SetActive(false);
+            }
         }
     }
 }

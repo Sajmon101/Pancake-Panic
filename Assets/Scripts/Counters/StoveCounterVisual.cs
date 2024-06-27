@@ -13,7 +13,7 @@ public class StoveCounterVisual : MonoBehaviour
         StoveCounter.OnStateChange += StoveCounter_OnStateChange;
     }
 
-    private void StoveCounter_OnStateChange(object sender, StoveCounter.OnStateChanheEventArgs e)
+    private void StoveCounter_OnStateChange(object sender, StoveCounter.OnStateChangeEventArgs e)
     {
         if (e.state == State.Frying)
         {
