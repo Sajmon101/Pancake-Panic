@@ -6,7 +6,7 @@ using UnityEngine;
 public class Counter : BaseCounter
 {
 
-    KitchenObjectSO kitchenObjectSO;
+    //KitchenObjectSO kitchenObjectSO;
 
     public override void Interact(Player player)
     {
@@ -35,11 +35,24 @@ public class Counter : BaseCounter
                 {
                     //There is sth on the counter and player holds plate
                     PlateKitchenObject plate = player.GetKitchenObject() as PlateKitchenObject;
-                    var a = plate.TryAddIngredient(kitchenObjectSO);
-                    Debug.Log(kitchenObjectSO);
-                    if (a)
+
+                    if (plate.TryAddIngredient(GetKitchenObject().GetKitchenObjectSO()))
                     {
                         GetKitchenObject().DestroySelf();
+                    }
+                }
+                else
+                {
+                    //There is sth on the counter and player holds sth different from plate
+                    if (GetKitchenObject() is PlateKitchenObject)
+                    {
+                        //There is plate on the counter and player holds sth different from plate
+                        PlateKitchenObject plate = GetKitchenObject() as PlateKitchenObject;
+
+                        if (plate.TryAddIngredient(player.GetKitchenObject().GetKitchenObjectSO()))
+                        {
+                            player.GetKitchenObject().DestroySelf();
+                        }
                     }
                 }
             }

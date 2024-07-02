@@ -28,7 +28,7 @@ public class KitchenObject : MonoBehaviour
         transform.localPosition = Vector3.zero;
         transform.localRotation = Quaternion.identity;
 
-        kitchenObjectParent.kitchen
+        //kitchenObjectParent.kitchen
     }
 
     public Transform GetTopPoint()
