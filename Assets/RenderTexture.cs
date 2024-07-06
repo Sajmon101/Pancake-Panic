@@ -7,7 +7,7 @@ public class SaveRenderTextureAsPNG : MonoBehaviour
 
     void Start()
     {
-        SaveRenderTextureToPNG(renderTexture, "renderTexture.png");
+        SaveRenderTextureToPNG(renderTexture, "Assets/Sprites/renderTexture.png");
     }
 
     void SaveRenderTextureToPNG(RenderTexture rt, string filePath)
