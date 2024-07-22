@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8693fd72c76f91e47bfec4b40899785c, type: 3}
   m_Name: CookedBread-BurntBread
   m_EditorClassIdentifier: 
-  input: {fileID: 11400000, guid: 72ba3a4e164824c4986b7c93c277a3d6, type: 2}
-  output: {fileID: 11400000, guid: e7efed5216cf9ce46ab19a70ea0d5418, type: 2}
+  input: {fileID: 11400000, guid: b1f17b07abccdd448a4c4bbfce1f2fdf, type: 2}
+  output: {fileID: 11400000, guid: 84b51e3e8c2455e4da64d5bc444ab3bb, type: 2}
   burningTimerMax: 5

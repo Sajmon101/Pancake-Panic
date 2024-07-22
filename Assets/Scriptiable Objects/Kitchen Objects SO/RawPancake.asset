@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1c07cc9ffc03c794893fb63629b9884c, type: 3}
-  m_Name: Bread-CookedBread
+  m_Script: {fileID: 11500000, guid: d0b1d03de58d8f448bccdf4e56e066e0, type: 3}
+  m_Name: RawPancake
   m_EditorClassIdentifier: 
-  input: {fileID: 11400000, guid: 4b498dbb02160f24aba7f31532734055, type: 2}
-  output: {fileID: 11400000, guid: b1f17b07abccdd448a4c4bbfce1f2fdf, type: 2}
-  fryingTimerMax: 3
+  prefab: {fileID: 658636987899441564, guid: 82a102a0a32b0be45bfb3f42b437c0c9, type: 3}
+  sprite: {fileID: 0}
+  objectName: Raw Pancake
