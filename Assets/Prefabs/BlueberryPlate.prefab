@@ -132,6 +132,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8234886950530044617}
+  - component: {fileID: -7931125656814231953}
   m_Layer: 0
   m_Name: BlueberryPlate
   m_TagString: Untagged
@@ -149,14 +150,27 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.5735764, z: 0, w: 0.8191521}
   m_LocalPosition: {x: 5.7274733, y: -14.87701, z: 20.529415}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 4829026983730949775}
   - {fileID: 8840005028140157402}
   - {fileID: 8398561914294732307}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 70, z: 0}
+--- !u!114 &-7931125656814231953
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4845094055685127618}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4d5d2f26a9726c439d58bb1a67467ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  kitchenObjectSO: {fileID: 11400000, guid: ab63bf34379baec499d0a0f065a9f919, type: 2}
 --- !u!1001 &11342528084561951
 PrefabInstance:
   m_ObjectHideFlags: 0

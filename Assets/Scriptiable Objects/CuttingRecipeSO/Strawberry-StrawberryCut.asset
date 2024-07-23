@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fdc64e0b7d4df046a6aad07c11e2e6b, type: 3}
+  m_Name: Strawberry-StrawberryCut
+  m_EditorClassIdentifier: 
+  input: {fileID: 11400000, guid: 99be3d0e478c43a499914641bed8b938, type: 2}
+  output: {fileID: 11400000, guid: 9e7ff2657782271438ba2ec1450eb027, type: 2}
+  cuttingProgressMax: 3

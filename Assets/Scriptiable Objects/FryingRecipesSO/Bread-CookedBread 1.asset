@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c07cc9ffc03c794893fb63629b9884c, type: 3}
+  m_Name: Bread-CookedBread 1
+  m_EditorClassIdentifier: 
+  input: {fileID: 11400000, guid: b1f17b07abccdd448a4c4bbfce1f2fdf, type: 2}
+  output: {fileID: 11400000, guid: 84b51e3e8c2455e4da64d5bc444ab3bb, type: 2}
+  fryingTimerMax: 5
