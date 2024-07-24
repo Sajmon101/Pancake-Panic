@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d0b1d03de58d8f448bccdf4e56e066e0, type: 3}
-  m_Name: Strawberry
+  m_Name: StrawberryPile
   m_EditorClassIdentifier: 
   prefab: {fileID: 1388227776720463011, guid: 053ba3a87a526e940bf9799699feef2a, type: 3}
   sprite: {fileID: 21300000, guid: da22434c5c71d7c4ba88f10735e7dc98, type: 3}

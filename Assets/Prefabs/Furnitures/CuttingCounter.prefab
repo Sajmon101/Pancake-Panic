@@ -549,18 +549,53 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8543202178765214489, guid: ec19d24f43283c940bdb9101199f3ccb,
         type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8543202178765214489, guid: ec19d24f43283c940bdb9101199f3ccb,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8543202178765214489, guid: ec19d24f43283c940bdb9101199f3ccb,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8543202178765214489, guid: ec19d24f43283c940bdb9101199f3ccb,
+        type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.672
+      value: -0.612
       objectReference: {fileID: 0}
     - target: {fileID: 8543202178765214489, guid: ec19d24f43283c940bdb9101199f3ccb,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.614
+      value: 1.543
       objectReference: {fileID: 0}
     - target: {fileID: 8543202178765214489, guid: ec19d24f43283c940bdb9101199f3ccb,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.75
+      value: 0.80500007
+      objectReference: {fileID: 0}
+    - target: {fileID: 8543202178765214489, guid: ec19d24f43283c940bdb9101199f3ccb,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.9847801
+      objectReference: {fileID: 0}
+    - target: {fileID: 8543202178765214489, guid: ec19d24f43283c940bdb9101199f3ccb,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.0007936182
+      objectReference: {fileID: 0}
+    - target: {fileID: 8543202178765214489, guid: ec19d24f43283c940bdb9101199f3ccb,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.17379795
+      objectReference: {fileID: 0}
+    - target: {fileID: 8543202178765214489, guid: ec19d24f43283c940bdb9101199f3ccb,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.0013841585
       objectReference: {fileID: 0}
     - target: {fileID: 8885412598670123429, guid: ec19d24f43283c940bdb9101199f3ccb,
         type: 3}
