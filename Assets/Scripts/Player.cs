@@ -10,9 +10,10 @@ public class Player : MonoBehaviour, IKitchenObjectParent
     public static Player instance { get; private set; }
 
     public event EventHandler<OnCounterSelectEventArgs> OnCounterSelect;
+    public event EventHandler<bool> OnHoldObject;
 
     [SerializeField] GameInput gameInput;
-    [SerializeField] float movementSpeed = 7f;
+    [SerializeField] float movementSpeed = 5f;
     [SerializeField] LayerMask counterMask;
     [SerializeField] Transform KitchenObjectHoldPoint;
 
@@ -57,9 +58,23 @@ public class Player : MonoBehaviour, IKitchenObjectParent
 
     private void GameInput_OnInteraction(object sender, System.EventArgs e)
     {
-        if(selectedCounter != null)
+        //if(selectedCounter != null)
+        //{
+        //    selectedCounter.Interact(this);
+        //}
+        if (selectedCounter != null)
         {
-            selectedCounter.Interact(this);
+            if (selectedCounter is ContainerCounter fridgeCounter)
+            {
+                // Specjalna logika dla lodówki
+                Debug.Log("To jest lodówka, uruchamiam specjaln¹ logikê.");
+                fridgeCounter.Interact(this); // Wywo³aj interakcjê specyficzn¹ dla lodówki
+            }
+            else
+            {
+                // Zwyk³a interakcja z dowolnym innym licznikiem
+                selectedCounter.Interact(this);
+            }
         }
     }
 
@@ -162,6 +177,7 @@ public class Player : MonoBehaviour, IKitchenObjectParent
     public void SetKitchenObjectParent(KitchenObject kitchenObject)
     {
         this.kitchenObject = kitchenObject;
+        OnHoldObject?.Invoke(this, true);
     }
 
     public Transform GetTopPoint()
@@ -172,6 +188,7 @@ public class Player : MonoBehaviour, IKitchenObjectParent
     public void ClearKitchenObjectParent()
     {
         kitchenObject = null;
+        OnHoldObject?.Invoke(this, false);
     }
 
     public KitchenObject GetKitchenObject()

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,6 +6,7 @@ using UnityEngine;
 public class ContainerCounter : BaseCounter
 {
     [SerializeField] KitchenObjectSO kitchenObjectSO;
+    public static EventHandler OnFridgeInteraction;
 
     public override void Interact(Player player)
     {
@@ -12,5 +14,7 @@ public class ContainerCounter : BaseCounter
         {
             KitchenObject.SpawnKitchenObject(kitchenObjectSO, player);
         }
+
+        OnFridgeInteraction?.Invoke(this, null);
     }
 }
