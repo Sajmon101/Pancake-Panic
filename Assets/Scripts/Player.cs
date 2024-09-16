@@ -21,6 +21,7 @@ public class Player : MonoBehaviour, IKitchenObjectParent
     private Vector3 prevMoveDir = Vector3.zero;
     private BaseCounter selectedCounter;
     private KitchenObject kitchenObject;
+    private bool blockedMovement = false;
 
 
 
@@ -64,26 +65,15 @@ public class Player : MonoBehaviour, IKitchenObjectParent
         //}
         if (selectedCounter != null)
         {
-            if (selectedCounter is ContainerCounter fridgeCounter)
-            {
-                // Specjalna logika dla lodówki
-                Debug.Log("To jest lodówka, uruchamiam specjaln¹ logikê.");
-                fridgeCounter.Interact(this); // Wywo³aj interakcjê specyficzn¹ dla lodówki
-            }
-            else
-            {
-                // Zwyk³a interakcja z dowolnym innym licznikiem
-                selectedCounter.Interact(this);
-            }
+            selectedCounter.Interact(this);
         }
     }
 
     void Update()
     {
-
-        HandleMovement();
+        if(!blockedMovement)
+            HandleMovement();
         HandleInteraction();
-
     }
 
     private void HandleInteraction()
@@ -140,7 +130,7 @@ public class Player : MonoBehaviour, IKitchenObjectParent
 
         //smooth movement diagonally by the collider
         bool canMove = !Physics.CapsuleCast(transform.position, transform.position + Vector3.up * playerHeight, playerRadius, movementDir, moveDistance);
-        if (canMove)
+        if (canMove && !blockedMovement)
         {
             transform.position += movementDir  * moveDistance;
         }
@@ -172,6 +162,16 @@ public class Player : MonoBehaviour, IKitchenObjectParent
         return isWalking;
     }
 
+    public void DisablePlayerMovement()
+    {
+        blockedMovement = true;
+        isWalking = false;
+    }
+
+    public void EnablePlayerMovement()
+    {
+        blockedMovement = false;
+    }
 
     //IKitchenObjectParent
     public void SetKitchenObjectParent(KitchenObject kitchenObject)

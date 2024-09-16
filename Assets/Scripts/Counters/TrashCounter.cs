@@ -10,6 +10,7 @@ public class TrashCounter : BaseCounter
         if (player.HaskitchenObject())
         {
             player.GetKitchenObject().DestroySelf();
+            
         }
     }
 

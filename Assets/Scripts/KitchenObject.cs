@@ -8,6 +8,12 @@ public class KitchenObject : MonoBehaviour
 
     private IKitchenObjectParent kitchenObjectParent;
 
+    void LateUpdate()
+    {
+        transform.rotation = Quaternion.identity;
+    }
+
+
     public KitchenObjectSO GetKitchenObjectSO()
     {
         return kitchenObjectSO;
@@ -60,7 +66,9 @@ public class KitchenObject : MonoBehaviour
     public static KitchenObject SpawnKitchenObject(KitchenObjectSO kitchenObjectSO, IKitchenObjectParent kitchenObjectParent)
     {
         Transform kitchenObjectSOTransform = Instantiate(kitchenObjectSO.prefab.transform);
+        Debug.Log(kitchenObjectSOTransform);
         KitchenObject kitchenObject = kitchenObjectSOTransform.GetComponent<KitchenObject>();
+        Debug.Log(kitchenObject);
         kitchenObject.SetKitchenObjectParent(kitchenObjectParent);
         return kitchenObject;
     }

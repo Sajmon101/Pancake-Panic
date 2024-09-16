@@ -14,6 +14,7 @@ public class LookAtCamera : MonoBehaviour
     }
 
     [SerializeField] private Mode mode;
+    Vector3 direction;
 
     void LateUpdate()
     {
@@ -29,11 +30,15 @@ public class LookAtCamera : MonoBehaviour
                 break;
 
             case Mode.CameraForward:
-                transform.forward = Camera.main.transform.forward;
+                direction = Camera.main.transform.position - transform.position;
+                direction.x = 0;
+                transform.rotation = Quaternion.LookRotation(direction);
                 break;
 
             case Mode.CameraForwardInverted:
-                transform.forward = -Camera.main.transform.forward;
+                direction = -Camera.main.transform.position - transform.position;
+                direction.x = 0;
+                transform.rotation = Quaternion.LookRotation(direction);
                 break;
         }
 

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3878103208459898889}
   - component: {fileID: 1896436773913073279}
   - component: {fileID: 228373467215105601}
+  - component: {fileID: 830975174184110061}
   m_Layer: 5
   m_Name: FridgeButton
   m_TagString: Untagged
@@ -121,6 +122,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &830975174184110061
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5114499249086091385}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8feb5929fe8de04e96b972aff413c5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5495027286061520298
 GameObject:
   m_ObjectHideFlags: 0
