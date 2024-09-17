@@ -51,4 +51,10 @@ public class ContainerCounter : BaseCounter
 
         CloseFridge();
     }
+
+    private void OnDisable()
+    {
+        FridgeButtonManager.OnFridgeButtonClick -= SpawnObjectToPlayer;
+        CloseFridgeBtn.OnFridgeClose -= OnCloseFridge;
+    }
 }
