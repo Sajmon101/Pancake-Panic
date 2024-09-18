@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1c07cc9ffc03c794893fb63629b9884c, type: 3}
-  m_Name: Bread-CookedBread 1
+  m_Name: Raw-Cooked
   m_EditorClassIdentifier: 
-  input: {fileID: 11400000, guid: b1f17b07abccdd448a4c4bbfce1f2fdf, type: 2}
-  output: {fileID: 11400000, guid: 84b51e3e8c2455e4da64d5bc444ab3bb, type: 2}
-  fryingTimerMax: 5
+  input: {fileID: 11400000, guid: 4b498dbb02160f24aba7f31532734055, type: 2}
+  output: {fileID: 11400000, guid: b1f17b07abccdd448a4c4bbfce1f2fdf, type: 2}
+  fryingTimerMax: 3

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -12,6 +13,11 @@ public class TrashCounter : BaseCounter
         animator = GetComponent<Animator>();
     }
 
+    private void Start()
+    {
+        Player.instance.OnCounterSelect += OnTrashSelect;
+    }
+
     public override void Interact(Player player)
     {
         if (player.HaskitchenObject())
@@ -20,13 +26,26 @@ public class TrashCounter : BaseCounter
             player.ClearKitchenObjectParent();
         }
     }
-    void OnTriggerEnter(Collider other)
+
+    private void OnTrashSelect(object sender, Player.OnCounterSelectEventArgs e)
     {
-        animator.SetBool("TrashOpens", true);
+        if (e.selectedCounter is TrashCounter)
+        {
+            animator.SetBool("TrashOpens", true);
+        }
+        else
+        {
+            animator.SetBool("TrashOpens", false);
+        }
     }
 
-    void OnTriggerExit(Collider other)
-    {
-        animator.SetBool("TrashOpens", false);
-    }
+    //void OnTriggerEnter(Collider other)
+    //{
+    //    animator.SetBool("TrashOpens", true);
+    //}
+
+    //void OnTriggerExit(Collider other)
+    //{
+    //    animator.SetBool("TrashOpens", false);
+    //}
 }

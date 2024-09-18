@@ -10,7 +10,10 @@ public class CuttingCounter : BaseCounter, IHasProgress
 
 
     [SerializeField] private CuttingRecipeSO[] cuttingRecipeSO;
-    private int cuttingProgress;
+    [SerializeField] private GameObject knife;
+    private float cuttingProgress;
+    private float cuttingInterval = 0.1f;
+    private float cuttingProgressIncrement = 0.2f;
 
     public override void Interact(Player player)
     {
@@ -21,14 +24,9 @@ public class CuttingCounter : BaseCounter, IHasProgress
                 if(HasRecipeWithInput(player.GetKitchenObject().GetKitchenObjectSO()))
                 {
                     player.GetKitchenObject().SetKitchenObjectParent(this);
-                    cuttingProgress = 0;
 
-                    CuttingRecipeSO cuttingRecipeSO = GetCuttingRecipeSO(GetKitchenObject().GetKitchenObjectSO());
-
-                    OnProgressChanged?.Invoke(this, new IHasProgress.OnProgressChangedEventArgs
-                    {
-                        progressNormalized = (float)cuttingProgress/cuttingRecipeSO.cuttingProgressMax
-                    });
+                    StartCoroutine(FillBarCoroutine());
+                    knife.SetActive(true);
                 }
 
             }
@@ -55,27 +53,55 @@ public class CuttingCounter : BaseCounter, IHasProgress
         }
     }
 
-    public override void InteractAlternate(Player player)
+    private IEnumerator FillBarCoroutine()
     {
-        if (HaskitchenObject() && HasRecipeWithInput(GetKitchenObject().GetKitchenObjectSO()))
-        {
-            cuttingProgress++;
+        cuttingProgress = 0;
 
-            CuttingRecipeSO cuttingRecipeSO = GetCuttingRecipeSO(GetKitchenObject().GetKitchenObjectSO());
+        CuttingRecipeSO cuttingRecipeSO = GetCuttingRecipeSO(GetKitchenObject().GetKitchenObjectSO());
+
+        OnProgressChanged?.Invoke(this, new IHasProgress.OnProgressChangedEventArgs
+        {
+            progressNormalized = cuttingProgress / cuttingRecipeSO.cuttingProgressMax
+        });
+
+        while (cuttingProgress < cuttingRecipeSO.cuttingProgressMax)
+        {
+            yield return new WaitForSeconds(cuttingInterval);
+            cuttingProgress += cuttingProgressIncrement;
 
             OnProgressChanged?.Invoke(this, new IHasProgress.OnProgressChangedEventArgs
             {
-                progressNormalized = (float)cuttingProgress/cuttingRecipeSO.cuttingProgressMax
+                progressNormalized = cuttingProgress / cuttingRecipeSO.cuttingProgressMax
             });
-
-            if (cuttingRecipeSO.cuttingProgressMax <= cuttingProgress)
-            {
-                KitchenObjectSO outputKitchenObjectSO = GetOutputForInput(GetKitchenObject().GetKitchenObjectSO());
-                GetKitchenObject().DestroySelf();
-                KitchenObject.SpawnKitchenObject(outputKitchenObjectSO, this);
-            }
         }
+
+        KitchenObjectSO outputKitchenObjectSO = GetOutputForInput(GetKitchenObject().GetKitchenObjectSO());
+        GetKitchenObject().DestroySelf();
+        KitchenObject.SpawnKitchenObject(outputKitchenObjectSO, this);
+        knife.SetActive(false);
     }
+
+    //public override void InteractAlternate(Player player)
+    //{
+    //    if (HaskitchenObject() && HasRecipeWithInput(GetKitchenObject().GetKitchenObjectSO()))
+    //    {
+    //        cuttingProgress++;
+
+    //        CuttingRecipeSO cuttingRecipeSO = GetCuttingRecipeSO(GetKitchenObject().GetKitchenObjectSO());
+
+    //        OnProgressChanged?.Invoke(this, new IHasProgress.OnProgressChangedEventArgs
+    //        {
+    //            progressNormalized = (float)cuttingProgress/cuttingRecipeSO.cuttingProgressMax
+    //        });
+
+    //        if (cuttingRecipeSO.cuttingProgressMax <= cuttingProgress)
+    //        {
+    //            KitchenObjectSO outputKitchenObjectSO = GetOutputForInput(GetKitchenObject().GetKitchenObjectSO());
+    //            GetKitchenObject().DestroySelf();
+    //            KitchenObject.SpawnKitchenObject(outputKitchenObjectSO, this);
+    //        }
+    //    }
+    //}
 
     private KitchenObjectSO GetOutputForInput(KitchenObjectSO kitchenObjectSO)
     {

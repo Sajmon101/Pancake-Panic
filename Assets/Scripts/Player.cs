@@ -59,10 +59,6 @@ public class Player : MonoBehaviour, IKitchenObjectParent
 
     private void GameInput_OnInteraction(object sender, System.EventArgs e)
     {
-        //if(selectedCounter != null)
-        //{
-        //    selectedCounter.Interact(this);
-        //}
         if (selectedCounter != null)
         {
             selectedCounter.Interact(this);
@@ -71,23 +67,27 @@ public class Player : MonoBehaviour, IKitchenObjectParent
 
     void Update()
     {
-        if(!blockedMovement)
+        if (!blockedMovement)
+        {
             HandleMovement();
-        HandleInteraction();
+            HandleInteraction();
+        }
     }
 
     private void HandleInteraction()
     {
         Vector2 inputVector = gameInput.GetMovementVectorNormalized();
         Vector3 movementDir = new Vector3(inputVector.x, 0f, inputVector.y);
-        float interactDistance = 1.0f;
+        float interactDistance = 0.5f;
+        float interactSphereRadius = 1f;
+        float halfPlayerHeight = transform.localScale.y;
 
-        if(movementDir != Vector3.zero)
+        if (movementDir != Vector3.zero)
         {
             prevMoveDir = movementDir;
         }
 
-        if (Physics.Raycast(transform.position, prevMoveDir, out RaycastHit hitInfo, interactDistance, counterMask))
+        if (Physics.SphereCast(transform.position + new Vector3(0f, halfPlayerHeight/2, 0f) , interactSphereRadius, prevMoveDir, out RaycastHit hitInfo, interactDistance, counterMask))
         {
             if (hitInfo.transform.TryGetComponent<BaseCounter>(out BaseCounter counter))
             {
@@ -119,18 +119,17 @@ public class Player : MonoBehaviour, IKitchenObjectParent
 
     private void HandleMovement()
     {
-
         Vector2 inputVector = gameInput.GetMovementVectorNormalized();
         Vector3 movementDir = new Vector3(inputVector.x, 0f, inputVector.y);
         isWalking = movementDir != Vector3.zero;
 
         float playerHeight = 1f;
-        float playerRadius = 0.5f;
+        float playerRadius = 1f;
         float moveDistance = Time.deltaTime * movementSpeed;
 
         //smooth movement diagonally by the collider
         bool canMove = !Physics.CapsuleCast(transform.position, transform.position + Vector3.up * playerHeight, playerRadius, movementDir, moveDistance);
-        if (canMove && !blockedMovement)
+        if (canMove)
         {
             transform.position += movementDir  * moveDistance;
         }
@@ -200,6 +199,4 @@ public class Player : MonoBehaviour, IKitchenObjectParent
     {
         return kitchenObject != null;
     }
-
-
 }
