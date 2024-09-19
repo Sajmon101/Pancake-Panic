@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ef2904235672be49bc5eaf61b42d6b1, type: 3}
+  m_Name: EmptyingBlueberries
+  m_EditorClassIdentifier: 
+  fullPlate: {fileID: -7931125656814231953, guid: d2441d7452e9cbf4aa16ee01adf66464,
+    type: 3}
+  halfPlate: {fileID: 6910309646478996535, guid: 8e5bf9347717b99408958c93a3cd2b2d,
+    type: 3}
+  emptyPlate: {fileID: -6362559862224290705, guid: 67d661a1ca9306342b43dac89aea62c2,
+    type: 3}
+  takesToNextState: 3
+  kitchenObjectToTake: {fileID: 6910309646478996535, guid: 216efc751d95b5d47952d8b91731dda9,
+    type: 3}

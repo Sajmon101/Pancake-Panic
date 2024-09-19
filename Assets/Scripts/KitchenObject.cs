@@ -8,6 +8,7 @@ public class KitchenObject : MonoBehaviour
 
     private IKitchenObjectParent kitchenObjectParent;
 
+
     void LateUpdate()
     {
         transform.rotation = Quaternion.identity;

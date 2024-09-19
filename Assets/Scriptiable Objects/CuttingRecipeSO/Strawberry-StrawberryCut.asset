@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fdc64e0b7d4df046a6aad07c11e2e6b, type: 3}
   m_Name: Strawberry-StrawberryCut
   m_EditorClassIdentifier: 
-  input: {fileID: 11400000, guid: 99be3d0e478c43a499914641bed8b938, type: 2}
+  input: {fileID: 11400000, guid: a49a79dcd8294364dad8bc337eb6838d, type: 2}
   output: {fileID: 11400000, guid: 9e7ff2657782271438ba2ec1450eb027, type: 2}
   cuttingProgressMax: 3

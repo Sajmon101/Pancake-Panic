@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d0b1d03de58d8f448bccdf4e56e066e0, type: 3}
-  m_Name: StrawberryPlate
+  m_Name: BlueberryPlate
   m_EditorClassIdentifier: 
-  prefab: {fileID: 4700380505848103223, guid: 602516a7450a2504fbb32c797b5318a4, type: 3}
+  prefab: {fileID: 4845094055685127618, guid: 216efc751d95b5d47952d8b91731dda9, type: 3}
   sprite: {fileID: 0}
-  objectName: Strawberry Plate
+  objectName: BlueBerry Plate

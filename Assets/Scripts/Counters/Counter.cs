@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class Counter : BaseCounter
 {
-
-    //KitchenObjectSO kitchenObjectSO;
+    [SerializeField] EmptyingPlateRecipeSO[] emptyingPlateRecipeArrSO;
+    private int currentTakes = 0;
 
     public override void Interact(Player player)
     {
@@ -25,8 +25,19 @@ public class Counter : BaseCounter
             //There is sth on counter
             if (!player.HaskitchenObject())
             {
-                //There is sth on the counter and player doesn't hold anything
-                GetKitchenObject().SetKitchenObjectParent(player);
+                //player does not hold anything and there is multiple take object on counter
+                EmptyingPlateRecipeSO emptyingPlateRecipeSO = GetEmptyingRecipeByInputSO(GetKitchenObject().GetKitchenObjectSO());
+
+                if (emptyingPlateRecipeSO)
+                {
+                    HandleMultipleTakeObjects(emptyingPlateRecipeSO);
+                }
+
+                else
+                {
+                    //There is sth on the counter and player doesn't hold anything
+                    GetKitchenObject().SetKitchenObjectParent(player);
+                }
             }
             else
             {
@@ -58,4 +69,89 @@ public class Counter : BaseCounter
             }
         }
     }
+
+    private EmptyingPlateRecipeSO GetEmptyingRecipeByInputSO(KitchenObjectSO kitchenObjectSO)
+    {
+        foreach (var emptyingRecipe in emptyingPlateRecipeArrSO)
+        {
+            if (emptyingRecipe.fullPlate.GetKitchenObjectSO() == kitchenObjectSO || emptyingRecipe.halfPlate.GetKitchenObjectSO() == kitchenObjectSO)
+            {
+                
+                return emptyingRecipe;
+            }
+        }
+        return null;
+    }
+
+    enum PlateStates
+    {
+        FullPlate,
+        HalfPlate,
+        EmptyPlate
+    }
+
+    private PlateStates currentState;
+
+    private void HandleMultipleTakeObjects(EmptyingPlateRecipeSO emptyingRecipe)
+    {
+        switch (currentState)
+        {
+            case PlateStates.FullPlate:
+
+                KitchenObject kitchenObjectOutput = Instantiate(emptyingRecipe.kitchenObjectToTake);
+                kitchenObjectOutput.transform.localPosition = Vector3.zero;
+                kitchenObjectOutput.SetKitchenObjectParent(Player.instance);
+                currentTakes++;
+
+                if (currentTakes == emptyingRecipe.takesToNextState)
+                {
+                    GoToState(PlateStates.HalfPlate, emptyingRecipe);
+                }
+
+            break;
+
+            case PlateStates.HalfPlate:
+
+                kitchenObjectOutput = Instantiate(emptyingRecipe.kitchenObjectToTake);
+                kitchenObjectOutput.transform.localPosition = Vector3.zero;
+                kitchenObjectOutput.SetKitchenObjectParent(Player.instance);
+                currentTakes++;
+
+                if (currentTakes == emptyingRecipe.takesToNextState)
+                {
+                    GoToState(PlateStates.EmptyPlate, emptyingRecipe);
+                }
+
+            break;
+
+            case PlateStates.EmptyPlate:
+
+                GetKitchenObject().SetKitchenObjectParent(Player.instance);
+
+            break;
+        }
+    }
+
+    private void GoToState(PlateStates state, EmptyingPlateRecipeSO emptyingRecipe)
+    {
+        currentTakes = 0;
+        currentState = state;
+        GetKitchenObject().DestroySelf();
+
+        switch (currentState)
+        {
+            case PlateStates.HalfPlate:
+                KitchenObject halfPlate = Instantiate(emptyingRecipe.halfPlate);
+                halfPlate.transform.localPosition = Vector3.zero;
+                halfPlate.SetKitchenObjectParent(this);
+                break;
+
+            case PlateStates.EmptyPlate:
+                KitchenObject emptyPlate = Instantiate(emptyingRecipe.emptyPlate);
+                emptyPlate.transform.localPosition = Vector3.zero;
+                emptyPlate.SetKitchenObjectParent(this);
+                break;
+        }
+    }
+
 }

@@ -197,6 +197,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CounterTopPoint: {fileID: 8484603314012671576}
+  emptyingPlateRecipeArrSO:
+  - {fileID: 11400000, guid: 90cca7a2ce8ee254daf3de8304c0f5b8, type: 2}
+  - {fileID: 11400000, guid: 287cfe639d1d5e24985ac6b14cd08a91, type: 2}
 --- !u!4 &5884474135455594102 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5951800271548640055, guid: ec19d24f43283c940bdb9101199f3ccb,

@@ -16,12 +16,14 @@ public class Player : MonoBehaviour, IKitchenObjectParent
     [SerializeField] float movementSpeed = 5f;
     [SerializeField] LayerMask counterMask;
     [SerializeField] Transform KitchenObjectHoldPoint;
+    [SerializeField] KitchenObject platePrefab;
 
     private bool isWalking;
     private Vector3 prevMoveDir = Vector3.zero;
     private BaseCounter selectedCounter;
     private KitchenObject kitchenObject;
     private bool blockedMovement = false;
+    private KitchenObject holdingPlate;
 
 
 
@@ -172,10 +174,24 @@ public class Player : MonoBehaviour, IKitchenObjectParent
         blockedMovement = false;
     }
 
+    private void AddPlate()
+    {
+        holdingPlate = Instantiate(platePrefab);
+        holdingPlate.transform.parent  = GetTopPoint();
+        holdingPlate.transform.localPosition = new Vector3(0f, -0.00025f, 0f);
+    }
+
+    private void RemovePlate()
+    {
+        holdingPlate.DestroySelf();
+        holdingPlate = null;
+    }
+
     //IKitchenObjectParent
     public void SetKitchenObjectParent(KitchenObject kitchenObject)
     {
         this.kitchenObject = kitchenObject;
+        AddPlate();
         OnHoldObject?.Invoke(this, true);
     }
 
@@ -187,6 +203,7 @@ public class Player : MonoBehaviour, IKitchenObjectParent
     public void ClearKitchenObjectParent()
     {
         kitchenObject = null;
+        RemovePlate();
         OnHoldObject?.Invoke(this, false);
     }
 
