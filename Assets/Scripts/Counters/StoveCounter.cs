@@ -94,9 +94,9 @@ public class StoveCounter : BaseCounter, IHasProgress
 
     public override void Interact(Player player)
     {
-        if (!HaskitchenObject())
+        if (!HasKitchenObject())
         {
-            if (player.HaskitchenObject())
+            if (player.HasKitchenObject())
             {
                 if (HasRecipeWithInput(player.GetKitchenObject().GetKitchenObjectSO()))
                 {
@@ -122,7 +122,7 @@ public class StoveCounter : BaseCounter, IHasProgress
         }
         else
         {
-            if (!player.HaskitchenObject())
+            if (!player.HasKitchenObject())
             {
                 OnProgressChanged?.Invoke(this, new IHasProgress.OnProgressChangedEventArgs
                 {

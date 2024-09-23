@@ -15,3 +15,4 @@ MonoBehaviour:
   prefab: {fileID: 5083561977183800843, guid: f506c246ce79e844f9f00bf298f037bd, type: 3}
   sprite: {fileID: 21300000, guid: ac9cc154fdd8d5f42a2a619752de7513, type: 3}
   objectName: ChocolateSauce
+  height: 0.005

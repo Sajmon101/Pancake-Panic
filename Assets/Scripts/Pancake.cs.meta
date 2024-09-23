@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+guid: 2467fac0cafa1de449e73a233f59276b
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - kitchenObjectSO: {instanceID: 0}
+  - tray: {fileID: -2226421711864264110, guid: 87db62224c3db904a810d4a49a28edf2, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

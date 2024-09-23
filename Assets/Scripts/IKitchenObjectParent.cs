@@ -11,5 +11,5 @@ public interface IKitchenObjectParent
     void ClearKitchenObjectParent();
     KitchenObject GetKitchenObject();
 
-    bool HaskitchenObject();
+    bool HasKitchenObject();
 }

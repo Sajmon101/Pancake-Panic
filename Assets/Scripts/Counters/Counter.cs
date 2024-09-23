@@ -11,10 +11,10 @@ public class Counter : BaseCounter
     public override void Interact(Player player)
     {
         
-        if(!HaskitchenObject())
+        if(!HasKitchenObject())
         {
             //Counter is free
-            if (player.HaskitchenObject())
+            if (player.HasKitchenObject())
             {
                 //Counter is free and player holds sth
                 player.GetKitchenObject().SetKitchenObjectParent(this);
@@ -23,7 +23,7 @@ public class Counter : BaseCounter
         else
         {
             //There is sth on counter
-            if (!player.HaskitchenObject())
+            if (!player.HasKitchenObject())
             {
                 //player does not hold anything and there is multiple take object on counter
                 EmptyingPlateRecipeSO emptyingPlateRecipeSO = GetEmptyingRecipeByInputSO(GetKitchenObject().GetKitchenObjectSO());

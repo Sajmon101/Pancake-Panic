@@ -17,9 +17,9 @@ public class CuttingCounter : BaseCounter, IHasProgress
 
     public override void Interact(Player player)
     {
-        if (!HaskitchenObject())
+        if (!HasKitchenObject())
         {
-            if (player.HaskitchenObject())
+            if (player.HasKitchenObject())
             {
                 if(HasRecipeWithInput(player.GetKitchenObject().GetKitchenObjectSO()))
                 {
@@ -33,7 +33,7 @@ public class CuttingCounter : BaseCounter, IHasProgress
         }
         else
         {
-            if (!player.HaskitchenObject())
+            if (!player.HasKitchenObject())
             {
                 GetKitchenObject().SetKitchenObjectParent(player);
             }

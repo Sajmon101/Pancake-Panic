@@ -44,7 +44,7 @@ public class ContainerCounter : BaseCounter
 
     private void SpawnObjectToPlayer(object sender, KitchenObjectSO kitchenObjectSO)
     {
-        if (!Player.instance.HaskitchenObject())
+        if (!Player.instance.HasKitchenObject())
         {
             KitchenObject.SpawnKitchenObject(kitchenObjectSO, Player.instance);
         }

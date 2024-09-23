@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d0b1d03de58d8f448bccdf4e56e066e0, type: 3}
-  m_Name: Tray
+  m_Name: EmptyPancake
   m_EditorClassIdentifier: 
-  prefab: {fileID: 28695702072217033, guid: 87db62224c3db904a810d4a49a28edf2, type: 3}
+  prefab: {fileID: 61088380719103778, guid: 299830e6de5b1c14da726080d0e29c8b, type: 3}
   sprite: {fileID: 0}
-  objectName: Tray
-  height: 0.05
+  objectName: Empty Pancake
+  height: 0

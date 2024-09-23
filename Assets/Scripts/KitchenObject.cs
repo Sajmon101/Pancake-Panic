@@ -8,6 +8,14 @@ public class KitchenObject : MonoBehaviour
 
     private IKitchenObjectParent kitchenObjectParent;
 
+    private void Awake()
+    {
+        Renderer renderer = GetComponentInChildren<Renderer>();
+        if (renderer != null)
+        {
+            Debug.Log(GetKitchenObjectSO().name + "  :  " + renderer.bounds.size.y); // Wysokoœæ obiektu
+        }
+    }
 
     void LateUpdate()
     {

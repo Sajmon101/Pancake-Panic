@@ -20,7 +20,7 @@ public class TrashCounter : BaseCounter
 
     public override void Interact(Player player)
     {
-        if (player.HaskitchenObject())
+        if (player.HasKitchenObject())
         {
             player.GetKitchenObject().DestroySelf();
             player.ClearKitchenObjectParent();

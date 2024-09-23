@@ -15,3 +15,4 @@ MonoBehaviour:
   prefab: {fileID: 919132149155446097, guid: d9a6db7f47efbe54ca110388403f63ab, type: 3}
   sprite: {fileID: 21300000, guid: 3f1904313a0c11d419b11f9a28ca9692, type: 3}
   objectName: Vanila Sauce
+  height: 0.005
