@@ -5,8 +5,18 @@ using UnityEngine;
 
 public class Counter : BaseCounter
 {
+    [SerializeField] bool hasStartObject;
+    [SerializeField] KitchenObjectSO startObject;
     [SerializeField] EmptyingPlateRecipeSO[] emptyingPlateRecipeArrSO;
     private int currentTakes = 0;
+
+    private void Start()
+    {
+        if (hasStartObject && startObject != null)
+        {
+            KitchenObject.SpawnKitchenObject(startObject, this);
+        }
+    }
 
     public override void Interact(Player player)
     {

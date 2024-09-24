@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0b1d03de58d8f448bccdf4e56e066e0, type: 3}
   m_Name: VanilaSauce
   m_EditorClassIdentifier: 
-  prefab: {fileID: 919132149155446097, guid: d9a6db7f47efbe54ca110388403f63ab, type: 3}
+  prefab: {fileID: 8545190920935262167, guid: 75d6aa73a6122e041ac826686488ffdd, type: 3}
   sprite: {fileID: 21300000, guid: 3f1904313a0c11d419b11f9a28ca9692, type: 3}
   objectName: Vanila Sauce
-  height: 0.005
+  heightOnPancake: 0.005

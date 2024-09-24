@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.PackageManager;
 using UnityEngine;
 
 public class KitchenObject : MonoBehaviour
@@ -8,20 +9,30 @@ public class KitchenObject : MonoBehaviour
 
     private IKitchenObjectParent kitchenObjectParent;
 
-    private void Awake()
-    {
-        Renderer renderer = GetComponentInChildren<Renderer>();
-        if (renderer != null)
-        {
-            Debug.Log(GetKitchenObjectSO().name + "  :  " + renderer.bounds.size.y); // Wysokoœæ obiektu
-        }
-    }
-
     void LateUpdate()
     {
         transform.rotation = Quaternion.identity;
     }
 
+    //public float GetKitchenObjectHeight()
+    //{
+    //    Renderer renderer = GetComponentInChildren<Renderer>();
+    //    if (renderer != null)
+    //    {
+    //        if (kitchenObjectSO.isSauce)
+    //        {
+    //            return 0.005f;
+    //        }
+
+    //        else
+    //            return renderer.bounds.size.y;
+    //    }
+    //    else
+    //    {
+    //        Debug.Log("Kitchen Object's " + this + "Renderer cannot be found and height cannot be measured");
+    //        return 0f;
+    //    }
+    //}
 
     public KitchenObjectSO GetKitchenObjectSO()
     {

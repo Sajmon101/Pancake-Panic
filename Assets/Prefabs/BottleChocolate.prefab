@@ -93,8 +93,51 @@ PrefabInstance:
       propertyPath: m_Name
       value: BottleChocolate
       objectReference: {fileID: 0}
+    - target: {fileID: 977281066470491241, guid: 13d3fc6b9894eb9429b06c58353622c5,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 977281066470491241, guid: 13d3fc6b9894eb9429b06c58353622c5,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 977281066470491241, guid: 13d3fc6b9894eb9429b06c58353622c5,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 977281066470491241, guid: 13d3fc6b9894eb9429b06c58353622c5,
+        type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 13d3fc6b9894eb9429b06c58353622c5,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7489691098822061644}
   m_SourcePrefab: {fileID: 100100000, guid: 13d3fc6b9894eb9429b06c58353622c5, type: 3}
+--- !u!1 &3898708711239675739 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 13d3fc6b9894eb9429b06c58353622c5,
+    type: 3}
+  m_PrefabInstance: {fileID: 4241149755035767306}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &7489691098822061644
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3898708711239675739}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4d5d2f26a9726c439d58bb1a67467ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  kitchenObjectSO: {fileID: 11400000, guid: 0d38aaa42b9faa848b158b14479bf8f3, type: 2}

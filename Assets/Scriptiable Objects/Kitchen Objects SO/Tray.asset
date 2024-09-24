@@ -15,4 +15,4 @@ MonoBehaviour:
   prefab: {fileID: 28695702072217033, guid: 87db62224c3db904a810d4a49a28edf2, type: 3}
   sprite: {fileID: 0}
   objectName: Tray
-  height: 0.05
+  heightOnPancake: 0.05

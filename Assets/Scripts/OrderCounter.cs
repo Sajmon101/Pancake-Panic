@@ -5,9 +5,9 @@ using UnityEngine.UI;
 
 public class OrderCounter : BaseCounter
 {
-    private float orderSpawnInterval = 15f;  // Interwa³ czasu generowania zamówieñ
+    private float orderSpawnInterval = 15f;
     private float timer;
-    [SerializeField] bool generateOnAwake;
+    [SerializeField] bool generateOrderOnStart;
     [SerializeField] KitchenObjectSO[] avaliableIngredients;
     private List<KitchenObjectSO> drawnIngredients = new();
     public KitchenObjectSO emptyPancakeSO;
@@ -16,7 +16,7 @@ public class OrderCounter : BaseCounter
 
     private void Start()
     {
-        if (generateOnAwake)
+        if (generateOrderOnStart)
         {
             timer = 15.1f;
         }
@@ -38,7 +38,6 @@ public class OrderCounter : BaseCounter
         if(!HasKitchenObject())
         {
             KitchenObject.SpawnKitchenObject(emptyPancakeSO, this);
-            //GetKitchenObject().GetComponent<Pancake>().AddIngredient(trayPrefab);
 
             int ingredientsAmount = Random.Range(2, 6);
             drawnIngredients.Add(avaliableIngredients[0]);

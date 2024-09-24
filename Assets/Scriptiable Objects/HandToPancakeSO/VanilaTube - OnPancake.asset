@@ -9,10 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0b1d03de58d8f448bccdf4e56e066e0, type: 3}
-  m_Name: CookedPancake
+  m_Script: {fileID: 11500000, guid: e9b3be231abcf1348bbc7d962c60efc2, type: 3}
+  m_Name: VanilaTube - OnPancake
   m_EditorClassIdentifier: 
-  prefab: {fileID: 8377295394478245282, guid: cee3f6cf1c00fb240a0f9e9949653312, type: 3}
-  sprite: {fileID: 0}
-  objectName: Cooked Pancake
-  heightOnPancake: 0.06
+  input: {fileID: 11400000, guid: 31a0229d227d8e347a2fd91378528395, type: 2}
+  output: {fileID: 11400000, guid: 7b1f410887479984ebbffbfac5125fcc, type: 2}

@@ -45,4 +45,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   kitchenObjectSO: {fileID: 0}
-  tray: {fileID: -2226421711864264110, guid: 87db62224c3db904a810d4a49a28edf2, type: 3}
+  handToPancakeRecipesArr:
+  - {fileID: 11400000, guid: f4ec3e3f62e49374894f22eadad44caf, type: 2}
+  - {fileID: 11400000, guid: 929bd962b309183439cdeb12c638d2cf, type: 2}
+  - {fileID: 11400000, guid: 33e74f6eaae6dc5418ce75ae8e78bdb8, type: 2}
+  - {fileID: 11400000, guid: 8d92f930e02d7c94e8e2a4f46b891f57, type: 2}
+  - {fileID: 11400000, guid: 682c96c2155284c41b913b0ea2bb6a0b, type: 2}
+  trayKitchenObject: {fileID: -2226421711864264110, guid: 87db62224c3db904a810d4a49a28edf2,
+    type: 3}

@@ -4,31 +4,53 @@ using UnityEngine;
 
 public class Pancake : KitchenObject
 {
-    private List<KitchenObject> ingredients = new List<KitchenObject>();
-    [SerializeField] private KitchenObject tray;
-    private float currentOffset;
+    private List<KitchenObjectSO> ingredients = new List<KitchenObjectSO>();
+    [SerializeField] private HandToPancakeSO[] handToPancakeRecipesArr;
+    [SerializeField] private KitchenObject trayKitchenObject;
+    private float offsetSum = 0f;
 
     private void Start()
     {
-        GameObject newIngredient = Instantiate(tray.GetKitchenObjectSO().prefab);
+        GameObject newIngredient = Instantiate(trayKitchenObject.GetKitchenObjectSO().prefab);
         newIngredient.transform.SetParent(transform);
         newIngredient.transform.localPosition = Vector3.zero;
+        offsetSum += trayKitchenObject.GetKitchenObjectSO().heightOnPancake;
     }
 
     public void AddIngredient(KitchenObject ingredient)
     {
-        GameObject newIngredient = Instantiate(ingredient.GetKitchenObjectSO().prefab);
-        newIngredient.transform.SetParent(transform);
-        newIngredient.transform.localPosition = new Vector3(0f, currentOffset + ingredient.GetKitchenObjectSO().height, 0f);
+        HandToPancakeSO reciepe = GetHandToPancakeRecipeSO(ingredient.GetKitchenObjectSO());
 
-        ingredients.Add(ingredient);
+        KitchenObjectSO tranformedIngredient = reciepe.output;
 
-        Player.instance.GetKitchenObject().DestroySelf();
-        Player.instance.ClearKitchenObjectParent();
+        if (tranformedIngredient != null)
+        {
+            GameObject newIngredient = Instantiate(tranformedIngredient.prefab);
+            newIngredient.transform.SetParent(transform);
+
+            newIngredient.transform.localPosition = new Vector3(0f, offsetSum, 0f);
+            offsetSum += tranformedIngredient.heightOnPancake;
+
+            ingredients.Add(tranformedIngredient);
+
+            if(reciepe.destoryInput)
+            {
+                Player.instance.GetKitchenObject().DestroySelf();
+                Player.instance.ClearKitchenObjectParent();
+            }
+        }
     }
 
-    public List<KitchenObject> GetIngredients()
+    private HandToPancakeSO GetHandToPancakeRecipeSO(KitchenObjectSO kitchenObjectSO)
     {
-        return ingredients;
+        foreach (var handToPancakeRecipe in handToPancakeRecipesArr)
+        {
+            if (handToPancakeRecipe.input == kitchenObjectSO)
+            {
+                return handToPancakeRecipe;
+            }
+        }
+        return null;
     }
+
 }
