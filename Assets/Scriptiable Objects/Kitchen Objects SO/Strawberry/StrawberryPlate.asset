@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: StrawberryPlate
   m_EditorClassIdentifier: 
   prefab: {fileID: 4700380505848103223, guid: 47e2455aa2e12ca4e9c3fc63f5fc3aca, type: 3}
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: da22434c5c71d7c4ba88f10735e7dc98, type: 3}
   objectName: Strawberry Plate
+  heightOnPancake: 0

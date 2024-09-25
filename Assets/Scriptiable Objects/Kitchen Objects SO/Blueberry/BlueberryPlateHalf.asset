@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: BlueberryPlateHalf
   m_EditorClassIdentifier: 
   prefab: {fileID: 4845094055685127618, guid: 8e5bf9347717b99408958c93a3cd2b2d, type: 3}
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: fbf56feb080f735438f41269c1978752, type: 3}
   objectName: Blueberry Plate Half
+  heightOnPancake: 0

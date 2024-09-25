@@ -6,60 +6,60 @@ using UnityEngine.UI;
 public class OrderCounter : BaseCounter
 {
     private float orderSpawnInterval = 15f;
-    private float timer;
+    private float timer = 0f;
     [SerializeField] bool generateOrderOnStart;
-    [SerializeField] KitchenObjectSO[] avaliableIngredients;
-    private List<KitchenObjectSO> drawnIngredients = new();
+    [SerializeField] int ordersToGenerate;
+    [SerializeField] KitchenObjectSO[] avaliableIngredientsSO;
     public KitchenObjectSO emptyPancakeSO;
-    public GameObject panel;
+    public GameObject ingredientPanel;
     public GameObject itemPrefab;
+    Queue<List<KitchenObjectSO>> ordersQueue = new();
 
     private void Start()
     {
         if (generateOrderOnStart)
         {
-            timer = 15.1f;
-        }
-    }
-
-    void Update()
-    {
-        timer += Time.deltaTime;
-        if (timer >= orderSpawnInterval)
-        {
             GenerateOrder();
             CreateUI();
-            timer = 0;
+        }
+
+        StartCoroutine(GeneratingOrdersCoroutine());
+    }
+
+    private IEnumerator GeneratingOrdersCoroutine()
+    {
+        for (int i = 0; i < ordersToGenerate; i++)
+        {
+            GenerateOrder();
+            yield return new WaitForSeconds(orderSpawnInterval);
         }
     }
 
-    private void GenerateOrder()
+    private List<KitchenObjectSO> GenerateOrder()
     {
-        if(!HasKitchenObject())
+        List<KitchenObjectSO> drawnIngredientsSO = new();
+        KitchenObject.SpawnKitchenObject(emptyPancakeSO, this);
+
+        int ingredientsAmount = Random.Range(2, 6);
+        drawnIngredientsSO.Add(avaliableIngredientsSO[0]);
+
+        for (int i = 0; i < ingredientsAmount - 1; i++)
         {
-            KitchenObject.SpawnKitchenObject(emptyPancakeSO, this);
-
-            int ingredientsAmount = Random.Range(2, 6);
-            drawnIngredients.Add(avaliableIngredients[0]);
-
-            for (int i = 0; i < ingredientsAmount - 1; i++)
-            {
-                int ingredientIndex = Random.Range(0, avaliableIngredients.Length);
-                drawnIngredients.Add(avaliableIngredients[i]);
-            }
+            int ingredientIndex = Random.Range(0, avaliableIngredientsSO.Length);
+            drawnIngredientsSO.Add(avaliableIngredientsSO[i]);
         }
+
+        CreateUI(); // to wyrzuciæ do miejsca gdzie bêdzie pobierane zamówienie z kolejki
+
+        return drawnIngredientsSO;
     }
 
     private void CreateUI()
     {
-        // Tworzy nowy element w panelu
-        GameObject newItem = Instantiate(itemPrefab, panel.transform);
-
-        // Mo¿esz ustawiæ treœæ nowego elementu np. tekst zamówienia
-        Text newItemText = newItem.GetComponentInChildren<Text>();
-        if (newItemText != null)
+        ingredientPanel.SetActive(true);
+        foreach(var ingredientSO in drawnIngredientsSO)
         {
-            newItemText.text = "Nowe zamówienie " + Random.Range(1, 100).ToString();
+            ingredientPanel.GetComponent<IngredientPanelManager>().AddIngredientTile(ingredientSO.sprite);
         }
     }
 
@@ -68,11 +68,6 @@ public class OrderCounter : BaseCounter
         if (HasKitchenObject())
         {
             GetKitchenObject().GetComponent<Pancake>().AddIngredient(player.GetKitchenObject());
-            //KitchenObject heldByPlayer;
-            //heldByPlayer = player.GetKitchenObject();
-            //heldByPlayer.transform.SetParent(GetKitchenObject().transform);
-            //heldByPlayer.transform.localPosition = Vector3.zero;
-            //player.ClearKitchenObjectParent();
         }
     }
 
