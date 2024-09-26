@@ -110,7 +110,7 @@ public class Counter : BaseCounter
 
                 KitchenObject kitchenObjectOutput = Instantiate(emptyingRecipe.kitchenObjectToTake);
                 kitchenObjectOutput.transform.localPosition = Vector3.zero;
-                kitchenObjectOutput.SetKitchenObjectParent(Player.instance);
+                kitchenObjectOutput.SetKitchenObjectParent(Player.Instance);
                 currentTakes++;
 
                 if (currentTakes == emptyingRecipe.takesToNextState)
@@ -124,7 +124,7 @@ public class Counter : BaseCounter
 
                 kitchenObjectOutput = Instantiate(emptyingRecipe.kitchenObjectToTake);
                 kitchenObjectOutput.transform.localPosition = Vector3.zero;
-                kitchenObjectOutput.SetKitchenObjectParent(Player.instance);
+                kitchenObjectOutput.SetKitchenObjectParent(Player.Instance);
                 currentTakes++;
 
                 if (currentTakes == emptyingRecipe.takesToNextState)
@@ -136,7 +136,7 @@ public class Counter : BaseCounter
 
             case PlateStates.EmptyPlate:
 
-                GetKitchenObject().SetKitchenObjectParent(Player.instance);
+                GetKitchenObject().SetKitchenObjectParent(Player.Instance);
 
             break;
         }

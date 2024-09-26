@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1042494319138179987}
   - component: {fileID: 6717238315361129999}
+  - component: {fileID: 3024358295705860352}
   m_Layer: 0
   m_Name: Pancake
   m_TagString: Untagged
@@ -53,3 +54,26 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 682c96c2155284c41b913b0ea2bb6a0b, type: 2}
   trayKitchenObject: {fileID: -2226421711864264110, guid: 87db62224c3db904a810d4a49a28edf2,
     type: 3}
+  blowPSPrefab: {fileID: 7333079923719752805, guid: f4b1902af9088fa4eb22f3293fab258c,
+    type: 3}
+--- !u!95 &3024358295705860352
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 61088380719103778}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: bad575089434d6943878499741b34b8d, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

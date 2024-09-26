@@ -8,6 +8,7 @@ public class Pancake : KitchenObject
     [SerializeField] private HandToPancakeSO[] handToPancakeRecipesArr;
     [SerializeField] private KitchenObject trayKitchenObject;
     private float offsetSum = 0f;
+    [SerializeField] private GameObject blowPSPrefab;
 
     private void Start()
     {
@@ -21,7 +22,7 @@ public class Pancake : KitchenObject
     {
         HandToPancakeSO reciepe = GetHandToPancakeRecipeSO(ingredient.GetKitchenObjectSO());
 
-        KitchenObjectSO tranformedIngredient = reciepe.output;
+        KitchenObjectSO tranformedIngredient = reciepe?.output;
 
         if (tranformedIngredient != null)
         {
@@ -35,8 +36,8 @@ public class Pancake : KitchenObject
 
             if(reciepe.destoryInput)
             {
-                Player.instance.GetKitchenObject().DestroySelf();
-                Player.instance.ClearKitchenObjectParent();
+                Player.Instance.GetKitchenObject().DestroySelf();
+                Player.Instance.ClearKitchenObjectParent();
             }
         }
     }
@@ -53,4 +54,26 @@ public class Pancake : KitchenObject
         return null;
     }
 
+    public bool AreMatching(KitchenObjectSO input, KitchenObjectSO output)
+    {
+        HandToPancakeSO reciepe = GetHandToPancakeRecipeSO(input);
+        KitchenObjectSO tranformedIngredient = reciepe.output;
+
+        if(tranformedIngredient.name == output.name)
+            return true;
+        else
+            return false;
+
+    }
+
+    public void AnimateAndDestroy()
+    {
+        GetComponent<Animator>().SetBool("destroy", true);
+    }
+
+    public void OnAnimationEnd()
+    {
+        Instantiate(blowPSPrefab, transform.position, Quaternion.identity);
+        Destroy(gameObject);
+    }
 }

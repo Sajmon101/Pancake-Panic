@@ -5,59 +5,23 @@ using UnityEngine.UI;
 
 public class OrderCounter : BaseCounter
 {
-    private float orderSpawnInterval = 15f;
-    private float timer = 0f;
-    [SerializeField] bool generateOrderOnStart;
-    [SerializeField] int ordersToGenerate;
-    [SerializeField] KitchenObjectSO[] avaliableIngredientsSO;
     public KitchenObjectSO emptyPancakeSO;
     public GameObject ingredientPanel;
     public GameObject itemPrefab;
-    Queue<List<KitchenObjectSO>> ordersQueue = new();
+    private Queue<KitchenObjectSO> currentIngredientQueue = new();
+    //private bool orderFinished = false;
 
-    private void Start()
+    public void PlaceOrder(Queue<KitchenObjectSO> ingredientQueue)
     {
-        if (generateOrderOnStart)
-        {
-            GenerateOrder();
-            CreateUI();
-        }
-
-        StartCoroutine(GeneratingOrdersCoroutine());
-    }
-
-    private IEnumerator GeneratingOrdersCoroutine()
-    {
-        for (int i = 0; i < ordersToGenerate; i++)
-        {
-            GenerateOrder();
-            yield return new WaitForSeconds(orderSpawnInterval);
-        }
-    }
-
-    private List<KitchenObjectSO> GenerateOrder()
-    {
-        List<KitchenObjectSO> drawnIngredientsSO = new();
+        currentIngredientQueue = ingredientQueue;
         KitchenObject.SpawnKitchenObject(emptyPancakeSO, this);
-
-        int ingredientsAmount = Random.Range(2, 6);
-        drawnIngredientsSO.Add(avaliableIngredientsSO[0]);
-
-        for (int i = 0; i < ingredientsAmount - 1; i++)
-        {
-            int ingredientIndex = Random.Range(0, avaliableIngredientsSO.Length);
-            drawnIngredientsSO.Add(avaliableIngredientsSO[i]);
-        }
-
-        CreateUI(); // to wyrzuciæ do miejsca gdzie bêdzie pobierane zamówienie z kolejki
-
-        return drawnIngredientsSO;
+        CreateUI(currentIngredientQueue);
     }
 
-    private void CreateUI()
+    private void CreateUI(Queue<KitchenObjectSO> ingredientQueue)
     {
         ingredientPanel.SetActive(true);
-        foreach(var ingredientSO in drawnIngredientsSO)
+        foreach (var ingredientSO in ingredientQueue)
         {
             ingredientPanel.GetComponent<IngredientPanelManager>().AddIngredientTile(ingredientSO.sprite);
         }
@@ -65,10 +29,31 @@ public class OrderCounter : BaseCounter
 
     public override void Interact(Player player)
     {
-        if (HasKitchenObject())
+        //uncomment to player be able to take ready pancake
+        /*if (orderFinished && !player.HasKitchenObject())
+        {
+            GetKitchenObject().SetKitchenObjectParent(player);
+        }
+        else */ if (HasKitchenObject() && GetKitchenObject().GetComponent<Pancake>().AreMatching(player.GetKitchenObject().GetKitchenObjectSO(), currentIngredientQueue.Peek()))
         {
             GetKitchenObject().GetComponent<Pancake>().AddIngredient(player.GetKitchenObject());
+            ingredientPanel.GetComponent<IngredientPanelManager>().DeleteHeadIngredientTile();
+            currentIngredientQueue.Dequeue();
+
+            Debug.Log(currentIngredientQueue.Count);
+
+            if (currentIngredientQueue.Count == 0)
+                EndCurrentOrder();
         }
+
     }
+
+    private void EndCurrentOrder()
+    {
+        ingredientPanel.SetActive(false);
+        currentIngredientQueue = null;
+        //orderFinished = true;
+        GetKitchenObject().GetComponent<Pancake>().AnimateAndDestroy();
+    } 
 
 }

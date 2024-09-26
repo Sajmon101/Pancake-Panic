@@ -7,7 +7,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour, IKitchenObjectParent
 {
-    public static Player instance { get; private set; }
+    public static Player Instance { get; private set; }
 
     public event EventHandler<OnCounterSelectEventArgs> OnCounterSelect;
     public event EventHandler<bool> OnHoldObject;
@@ -34,13 +34,13 @@ public class Player : MonoBehaviour, IKitchenObjectParent
 
     private void Awake()
     {
-        if(instance != null)
+        if(Instance != null)
         {
             Debug.Log("There is more than one player instance!");
         }
         else
         {
-            instance = this;
+            Instance = this;
         }
     }
 

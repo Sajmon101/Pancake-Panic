@@ -15,7 +15,7 @@ public class TrashCounter : BaseCounter
 
     private void Start()
     {
-        Player.instance.OnCounterSelect += OnTrashSelect;
+        Player.Instance.OnCounterSelect += OnTrashSelect;
     }
 
     public override void Interact(Player player)

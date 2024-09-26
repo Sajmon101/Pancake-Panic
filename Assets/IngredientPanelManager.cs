@@ -9,6 +9,7 @@ public class IngredientPanelManager : MonoBehaviour
     Queue<GameObject> ingredientTiles = new();
     [SerializeField] GameObject tilePrefab;
 
+
     public void AddIngredientTile(Sprite ingredientSprite)
     {
         GameObject newTile = Instantiate(tilePrefab, transform);

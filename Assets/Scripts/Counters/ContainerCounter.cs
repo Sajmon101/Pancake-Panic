@@ -26,7 +26,7 @@ public class ContainerCounter : BaseCounter
     private void OpenFridge()
     {
         fridgeAnimator.SetBool("fridgeOpens", true);
-        Player.instance.DisablePlayerMovement();
+        Player.Instance.DisablePlayerMovement();
         ChooseKitchenObjectUI.SetActive(true);
     }
 
@@ -38,15 +38,15 @@ public class ContainerCounter : BaseCounter
     private void CloseFridge()
     {
         fridgeAnimator.SetBool("fridgeOpens", false);
-        Player.instance.EnablePlayerMovement();
+        Player.Instance.EnablePlayerMovement();
         ChooseKitchenObjectUI.SetActive(false);
     }
 
     private void SpawnObjectToPlayer(object sender, KitchenObjectSO kitchenObjectSO)
     {
-        if (!Player.instance.HasKitchenObject())
+        if (!Player.Instance.HasKitchenObject())
         {
-            KitchenObject.SpawnKitchenObject(kitchenObjectSO, Player.instance);
+            KitchenObject.SpawnKitchenObject(kitchenObjectSO, Player.Instance);
         }
 
         CloseFridge();

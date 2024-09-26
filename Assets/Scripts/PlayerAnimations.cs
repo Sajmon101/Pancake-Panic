@@ -16,12 +16,12 @@ public class PlayerAnimations : MonoBehaviour
     void Start()
     {
         ContainerCounter.OnFridgeInteraction += OnFridgeOpen;
-        Player.instance.OnHoldObject += OnHoldingObject;
+        Player.Instance.OnHoldObject += OnHoldingObject;
         ScheduleNextAction();
     }
     private void Update()
     {
-        bool playerIsWalking = Player.instance.IsWalking();
+        bool playerIsWalking = Player.Instance.IsWalking();
 
         if (playerIsWalking != isWalking)
         {

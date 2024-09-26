@@ -10,7 +10,7 @@ public class SelectedCounterVisual : MonoBehaviour
 
     private void Start()
     {
-        Player.instance.OnCounterSelect += Player_OnCounterSelect;
+        Player.Instance.OnCounterSelect += Player_OnCounterSelect;
     }
 
     private void Player_OnCounterSelect(object sender, Player.OnCounterSelectEventArgs e)
