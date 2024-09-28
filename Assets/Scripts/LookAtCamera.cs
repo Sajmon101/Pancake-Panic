@@ -39,6 +39,7 @@ public class LookAtCamera : MonoBehaviour
                 direction = -Camera.main.transform.position - transform.position;
                 direction.x = 0;
                 transform.rotation = Quaternion.LookRotation(direction);
+
                 break;
         }
 

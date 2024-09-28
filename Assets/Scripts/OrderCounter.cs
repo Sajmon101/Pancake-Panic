@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,6 +10,7 @@ public class OrderCounter : BaseCounter
     public GameObject ingredientPanel;
     public GameObject itemPrefab;
     private Queue<KitchenObjectSO> currentIngredientQueue = new();
+    public event EventHandler OnOrderComplete;
     //private bool orderFinished = false;
 
     public void PlaceOrder(Queue<KitchenObjectSO> ingredientQueue)
@@ -40,8 +42,6 @@ public class OrderCounter : BaseCounter
             ingredientPanel.GetComponent<IngredientPanelManager>().DeleteHeadIngredientTile();
             currentIngredientQueue.Dequeue();
 
-            Debug.Log(currentIngredientQueue.Count);
-
             if (currentIngredientQueue.Count == 0)
                 EndCurrentOrder();
         }
@@ -54,6 +54,9 @@ public class OrderCounter : BaseCounter
         currentIngredientQueue = null;
         //orderFinished = true;
         GetKitchenObject().GetComponent<Pancake>().AnimateAndDestroy();
+        ClearKitchenObjectParent();
+        OnOrderComplete?.Invoke(this, null);
+
     } 
 
 }

@@ -14,12 +14,24 @@ public class OrderGenerator : MonoBehaviour
     [SerializeField] private List<OrderCounter> orderCounters = new();
     [SerializeField] private TextMeshProUGUI OrdersLeftUI;
     [SerializeField] private TextMeshProUGUI WaitingUI;
+    public event System.EventHandler OnGameWin;
+    public event System.EventHandler OnGameLose;
+
+    private void OnEnable()
+    {
+        foreach (OrderCounter orderCounter in orderCounters)
+        {
+            orderCounter.OnOrderComplete += CheckIfWin;
+        }
+    }
 
     private void Start()
     {
+
         for (int i = 0; i < ordersOnStart; i++)
         {
             ordersQueue.Enqueue(GenerateOrder());
+            ordersToGenerate--;
         }
 
         StartCoroutine(GeneratingOrdersCoroutine());
@@ -35,11 +47,17 @@ public class OrderGenerator : MonoBehaviour
 
     private IEnumerator GeneratingOrdersCoroutine()
     {
-        for (int i = 0; i < ordersToGenerate; i++)
+        while (ordersToGenerate > 0)
         {
             yield return new WaitForSeconds(orderSpawnInterval);
             ordersQueue.Enqueue(GenerateOrder());
             ordersToGenerate--;
+
+            if(ordersQueue.Count > maxQueueSizeAllowed)
+            {
+                OnGameLose?.Invoke(this, null);
+            }
+
             UpdateScreenUI();
         }
     }
@@ -80,5 +98,22 @@ public class OrderGenerator : MonoBehaviour
     {
         OrdersLeftUI.text = ordersToGenerate.ToString();
         WaitingUI.text = ordersQueue.Count.ToString() + "/" + maxQueueSizeAllowed;
+    }
+
+    private void CheckIfWin(object sender, System.EventArgs e)
+    {
+        if(ordersQueue.Count == 0)
+        {
+            foreach (OrderCounter orderCounter in orderCounters)
+            {
+                if(orderCounter.HasKitchenObject())
+                {
+                    return;
+                }
+            }
+
+            OnGameWin?.Invoke(this, null);
+            
+        }
     }
 }
