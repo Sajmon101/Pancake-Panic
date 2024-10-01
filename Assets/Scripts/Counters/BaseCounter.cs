@@ -13,11 +13,6 @@ public class BaseCounter : MonoBehaviour, IKitchenObjectParent
     {
         Debug.LogError("Missing override from BaseCounter");
     }    
-    
-    public virtual void InteractAlternate(Player player)
-    {
-        Debug.LogError("Missing override from BaseCounter");
-    }
 
     public void SetKitchenObjectParent(KitchenObject kitchenObject)
     {

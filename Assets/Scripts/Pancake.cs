@@ -56,8 +56,23 @@ public class Pancake : KitchenObject
 
     public bool AreMatching(KitchenObjectSO input, KitchenObjectSO output)
     {
-        HandToPancakeSO reciepe = GetHandToPancakeRecipeSO(input);
-        KitchenObjectSO tranformedIngredient = reciepe.output;
+        KitchenObjectSO tranformedIngredient;
+
+        if (input != null && output != null)
+        {
+            HandToPancakeSO reciepe = GetHandToPancakeRecipeSO(input);
+
+            if (reciepe != null)
+            {
+                tranformedIngredient = reciepe?.output;
+            }
+            else
+                return false;
+        }
+        else
+        {
+            return false;
+        }
 
         if(tranformedIngredient.name == output.name)
             return true;

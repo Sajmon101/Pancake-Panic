@@ -14,6 +14,13 @@ public class CuttingCounter : BaseCounter, IHasProgress
     private float cuttingProgress;
     private float cuttingInterval = 0.1f;
     private float cuttingProgressIncrement = 0.2f;
+    private AudioSource cuttingSound;
+    private bool isCutting = false;
+
+    private void Awake()
+    {
+        cuttingSound = GetComponent<AudioSource>();
+    }
 
     public override void Interact(Player player)
     {
@@ -33,7 +40,7 @@ public class CuttingCounter : BaseCounter, IHasProgress
         }
         else
         {
-            if (!player.HasKitchenObject())
+            if (!player.HasKitchenObject() && !isCutting)
             {
                 GetKitchenObject().SetKitchenObjectParent(player);
             }
@@ -55,6 +62,10 @@ public class CuttingCounter : BaseCounter, IHasProgress
 
     private IEnumerator FillBarCoroutine()
     {
+        isCutting = true;
+
+        cuttingSound.Play();
+
         cuttingProgress = 0;
 
         CuttingRecipeSO cuttingRecipeSO = GetCuttingRecipeSO(GetKitchenObject().GetKitchenObjectSO());
@@ -75,6 +86,8 @@ public class CuttingCounter : BaseCounter, IHasProgress
             });
         }
 
+        cuttingSound.Stop();
+        isCutting = false;
         KitchenObjectSO outputKitchenObjectSO = GetOutputForInput(GetKitchenObject().GetKitchenObjectSO());
         GetKitchenObject().DestroySelf();
         KitchenObject.SpawnKitchenObject(outputKitchenObjectSO, this);

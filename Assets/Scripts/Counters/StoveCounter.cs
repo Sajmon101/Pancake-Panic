@@ -22,6 +22,7 @@ public class StoveCounter : BaseCounter, IHasProgress
     private float fryingTimer = 0;
     private float burningTimer = 0;
     private State state;
+    private AudioSource fryingSound;
 
     public enum State
     {
@@ -29,6 +30,11 @@ public class StoveCounter : BaseCounter, IHasProgress
         Frying,
         Fried,
         Burnt,
+    }
+
+    private void Awake()
+    {
+        fryingSound = GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -47,19 +53,23 @@ public class StoveCounter : BaseCounter, IHasProgress
                     progressNormalized = (float)fryingTimer/fryingRecipeSO.fryingTimerMax
                 });
 
+                if (!fryingSound.isPlaying)
+                {
+                    fryingSound.Play();
+                }
+
                 if (fryingTimer > fryingRecipeSO.fryingTimerMax)
                 {
-
                     fryingTimer = 0;
                     state = State.Fried;
 
                     GetKitchenObject().DestroySelf();
                     KitchenObject.SpawnKitchenObject(fryingRecipeSO.output, this);
                     burningRecipeSO = GetBurningRecipeByInputSO(GetKitchenObject().GetKitchenObjectSO());
-
+                    burningTimer = 0;
                 }
 
-            break;
+                break;
 
             case State.Fried:
 
@@ -129,6 +139,7 @@ public class StoveCounter : BaseCounter, IHasProgress
                     progressNormalized = 0f
                 });
 
+                fryingSound.Stop();
                 GetKitchenObject().SetKitchenObjectParent(player);
                 state = State.Idle;
 

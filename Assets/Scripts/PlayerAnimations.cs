@@ -25,6 +25,8 @@ public class PlayerAnimations : MonoBehaviour
 
         if (playerIsWalking != isWalking)
         {
+            animController.SetBool("isFridgeOpening", false);
+
             if (playerIsWalking)
             {
                 animController.SetFloat("speed", 1f);
@@ -40,12 +42,16 @@ public class PlayerAnimations : MonoBehaviour
 
     private void OnHoldingObject(object sender, bool isHolding)
     {
+        animController.SetBool("isFridgeOpening", false);
         animController.SetBool("isHolding", isHolding);
     }
 
     private void OnFridgeOpen(object sender, EventArgs e)
     {
-        animController.SetBool("openFridgeTrigger", true);
+        if (animController != null)
+        {
+            animController.SetBool("isFridgeOpening", true);
+        }
     }
 
     void ScheduleNextAction()
