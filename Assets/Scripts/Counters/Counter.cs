@@ -20,7 +20,6 @@ public class Counter : BaseCounter
 
     public override void Interact(Player player)
     {
-        
         if(!HasKitchenObject())
         {
             //Counter is free
@@ -100,7 +99,7 @@ public class Counter : BaseCounter
         EmptyPlate
     }
 
-    private PlateStates currentState;
+    private PlateStates currentState = PlateStates.FullPlate;
 
     private void HandleMultipleTakeObjects(EmptyingPlateRecipeSO emptyingRecipe)
     {
