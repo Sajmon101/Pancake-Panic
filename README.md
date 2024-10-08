@@ -1,7 +1,7 @@
 # Pancake Panic
 
 ## Project description
-Welcome to Pancake Paradise, a fast-paced cooking game where you run a pancake restaurant! Your goal is to complete all customer orders before the queue overflows. Prepare pancakes, slice strawberries, add blueberries, and drizzle sauces to create the perfect dish. Each order requires precise timing and careful attention to avoid burnt pancakes. Can you keep up with the orders and become the pancake master? 
+Welcome to Pancake Panic, a fast-paced cooking game where you run a pancake restaurant! Your goal is to complete all customer orders before the queue overflows. Prepare pancakes, slice strawberries, add blueberries, and drizzle sauces to create the perfect dish. Each order requires precise timing and careful attention to avoid burnt pancakes. Can you keep up with the orders and become the pancake master? 
 
 ## Key features
 - Pancake Cooking Mechanics: Pancakes need careful monitoring to avoid burning; ensure each pancake is cooked to a golden brown.
@@ -17,5 +17,5 @@ Welcome to Pancake Paradise, a fast-paced cooking game where you run a pancake r
 <img src="Images/MainMenu.png" alt="Main Menu" width="500"/> <img src="Images/Instruction.png" alt="Instruction" width="500"/>
 <img src="Images/Game.png" alt="Game Screenshot" width="500"/> <img src="Images/Game2.png" alt="Game Screenshot" width="500"/>
 
-## Licence
+## License
 The project is available under the MIT License.
