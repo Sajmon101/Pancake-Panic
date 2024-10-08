@@ -14,7 +14,7 @@ Welcome to Pancake Paradise, a fast-paced cooking game where you run a pancake r
 - C#
 
 ## Screenshots
-![screenshot](./screenshot.png)
+![screenshot](.Images/MainMenu.png)
 
 ## Licence
 The project is available under the MIT License.
