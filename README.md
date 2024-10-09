@@ -13,7 +13,7 @@ Welcome to Pancake Panic, a fast-paced cooking game where you run a pancake rest
 - Unity 2022.3.12f1
 - C#
 
-## Screenshots
+## Preview
 <img src="Images/MainMenu.png" alt="Main Menu" width="500"/> <img src="Images/Instruction.png" alt="Instruction" width="500"/>
 <img src="Images/Gameplay.gif" alt="Gameplay GIF" width="500"/>
 
