@@ -10,7 +10,7 @@ Welcome to Pancake Panic, a fast-paced cooking game where you run a pancake rest
 - **Win/Loss Conditions**: Complete all orders to win. Game over occurs if the queue exceeds a certain length.
 
 ## Tools
-- Unity 2022.3.12f1 (URP pipeline)
+- Unity 2022.3.12f1 (URP)
 - C#
 
 ## Preview
